@@ -1,0 +1,44 @@
+[
+  {
+    "name": "User",
+    "kind": "OBJECT",
+    "interfaces": [
+      "Node"
+    ],
+    "fields": [
+      {
+        "name": "id",
+        "type": "ID",
+        "nonNull": true,
+        "unique": true
+      }
+    ]
+  },
+  {
+    "name": "Staple",
+    "kind": "OBJECT",
+    "interfaces": [
+      "Node"
+    ],
+    "fields": [
+      {
+        "name": "id",
+        "type": "ID",
+        "nonNull": true,
+        "unique": true
+      },
+      {
+        "name": "name",
+        "type": "String"
+      },
+      {
+        "name": "type",
+        "type": "String"
+      },
+      {
+        "name": "amount",
+        "type": "Float"
+      }
+    ]
+  }
+]
