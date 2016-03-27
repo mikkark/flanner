@@ -7,10 +7,11 @@ import Reindex from './Reindex';
 import App from './components/App';
 
 require("elemental/less/elemental.less");
+require("./components/App.less");
 
 Relay.injectNetworkLayer(Reindex.getRelayNetworkLayer());
 
 ReactDOM.render(
-  <App />,
+  <App class="content"/>,
   document.getElementById('root')
 );
