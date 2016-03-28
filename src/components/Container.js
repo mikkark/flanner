@@ -19,6 +19,7 @@ export default class Container extends React.Component {
           <Relay.RootContainer
             Component={Profile}
             route={new ProfileRoute}
+            forceFetch={true}
             renderLoading={
               function () {
                 return <Spinner size="lg" />;
@@ -36,6 +37,7 @@ export default class Container extends React.Component {
           <Relay.RootContainer
             Component={StapleApp}
             route={new StaplesRoute}
+            forceFetch={true}
             renderLoading={
                 function () {
                   return <Spinner size="lg" />;

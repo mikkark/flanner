@@ -11,6 +11,12 @@
         "type": "ID",
         "nonNull": true,
         "unique": true
+      },
+      {
+        "name": "staples",
+        "type": "Connection",
+        "ofType": "Staple",
+        "reverseName": "user"
       }
     ]
   },
@@ -38,6 +44,11 @@
       {
         "name": "amount",
         "type": "Float"
+      },
+      {
+        "name": "user",
+        "type": "User",
+        "reverseName": "staples"
       }
     ]
   }

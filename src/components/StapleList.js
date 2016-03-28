@@ -14,7 +14,7 @@ class StapleList extends Component {
     return (
       <Staple key={edge.node.id}
             staple={edge.node}
-            viewer={this.props.viewer} />
+            user={this.props.user} />
     );
   };
 
@@ -46,6 +46,11 @@ export default Relay.createContainer(StapleList, {
             ${Staple.getFragment('staple')}
           }
         }
+      }
+    `,
+    user: () => Relay.QL`
+      fragment on User {
+        ${Staple.getFragment('user')}
       }
     `
   },

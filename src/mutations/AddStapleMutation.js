@@ -2,9 +2,9 @@ import Relay from 'react-relay';
 
 export default class AddStapleMutation extends Relay.Mutation {
   static fragments = {
-    viewer: () => Relay.QL`fragment on ReindexViewer {
+    user: () => Relay.QL`fragment on User {
       id
-      allStaples {
+      staples {
         count,
       }
     }`
@@ -18,7 +18,8 @@ export default class AddStapleMutation extends Relay.Mutation {
     return {
       name: this.props.name,
       amount: this.props.amount,
-      type: this.props.amount < 0 ? 'minus' : 'plus'
+      type: this.props.amount < 0 ? 'minus' : 'plus',
+      user: this.props.user.id
     };
   }
 
@@ -26,9 +27,9 @@ export default class AddStapleMutation extends Relay.Mutation {
     return Relay.QL`
       fragment on _StaplePayload {
         changedStapleEdge,
-        viewer {
+        user {
           id,
-          allStaples {
+          staples {
             count
           }
         }
@@ -39,8 +40,8 @@ export default class AddStapleMutation extends Relay.Mutation {
   getConfigs() {
     return [{
       type: 'RANGE_ADD',
-      parentID: this.props.viewer.id,
-      connectionName: 'allStaples',
+      parentID: this.props.user.id,
+      connectionName: 'staples',
       edgeName: 'changedStapleEdge',
       rangeBehaviors: {
         '': 'prepend',
@@ -48,7 +49,7 @@ export default class AddStapleMutation extends Relay.Mutation {
     }, {
       type: 'FIELDS_CHANGE',
       fieldIDs: {
-        viewer: this.props.viewer.id,
+        user: this.props.user.id,
       },
     }];
   }
@@ -62,10 +63,10 @@ export default class AddStapleMutation extends Relay.Mutation {
           type: this.props.amount < 0 ? 'minus' : 'plus'
         },
       },
-      viewer: {
-        id: this.props.viewer.id,
-        allStaples: {
-          count: this.props.viewer.allStaples.count + 1,
+      user: {
+        id: this.props.user.id,
+        staples: {
+          count: this.props.user.staples.count + 1,
         },
       },
     };
