@@ -5,8 +5,6 @@ import Staple from './Staple';
 import Row from 'elemental/lib/components/Row';
 import Col from 'elemental/lib/components/Col';
 
-import DeleteStapleMutation from '../../mutations/DeleteStapleMutation';
-
 class StapleList extends Component {
   handleToggleAllChange = () => {
     // TODO: handle toggle all

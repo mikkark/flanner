@@ -4,8 +4,7 @@ import classNames from 'classnames';
 import Button from 'elemental/lib/components/Button';
 import Row from 'elemental/lib/components/Row';
 import Col from 'elemental/lib/components/Col';
-import AddStapleMutation from '../../mutations/AddStapleMutation';
-import DeleteStapleMutation from '../../mutations/DeleteStapleMutation';
+import DeleteStapleMutation from './mutations/DeleteStapleMutation';
 
 class Staple extends Component {
   state = {

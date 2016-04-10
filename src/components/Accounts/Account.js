@@ -3,8 +3,18 @@ import Relay from 'react-relay';
 import Button from 'elemental/lib/components/Button';
 import Row from 'elemental/lib/components/Row';
 import Col from 'elemental/lib/components/Col';
+import DeleteAccountMutation from './mutations/DeleteAccountMutation';
 
 class Account extends Component {
+  handleDestroyClick = () => {
+    Relay.Store.update(
+      new DeleteAccountMutation({
+        id: this.props.account.id,
+        user: this.props.user
+      }),
+    );
+  };
+
   render() {
     return (
       <Row>
@@ -28,10 +38,7 @@ export default Relay.createContainer(Account, {
       }
     `,
     user: () => Relay.QL`fragment on User {
-      id
-      accounts(first: 1000000) {
-        count,
-      }
-    }`
+        ${DeleteAccountMutation.getFragment('user')}
+      }`
   }
 });

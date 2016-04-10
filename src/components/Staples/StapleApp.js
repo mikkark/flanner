@@ -5,7 +5,7 @@ import Reindex from '../../Reindex';
 import StapleList from './StapleList';
 import StapleInput from './StapleInput';
 import Row from 'elemental/lib/components/Row';
-import AddStapleMutation from '../../mutations/AddStapleMutation';
+import AddStapleMutation from './mutations/AddStapleMutation';
 import AccountList from '../Accounts/AccountList';
 import AddAccountMutation from '../Accounts/mutations/AddAccountMutation';
 

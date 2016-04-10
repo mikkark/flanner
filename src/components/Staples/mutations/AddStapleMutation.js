@@ -15,8 +15,6 @@ export default class AddStapleMutation extends Relay.Mutation {
   }
 
   getVariables() {
-    console.log("vars:" + this.props);
-
     return {
       name: this.props.name,
       amount: this.props.amount,
@@ -58,8 +56,6 @@ export default class AddStapleMutation extends Relay.Mutation {
   }
 
   getOptimisticResponse() {
-    console.log(this.props);
-
     return {
       changedStapleEdge: {
         node: {
