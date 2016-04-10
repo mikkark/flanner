@@ -1,24 +1,35 @@
 import React, {Component} from 'react';
 import Relay from 'react-relay';
-import classNames from 'classnames';
-import Reindex from '../Reindex';
+import Reindex from '../../Reindex';
 
 import StapleList from './StapleList';
 import StapleInput from './StapleInput';
 import Row from 'elemental/lib/components/Row';
-import AddStapleMutation from '../mutations/AddStapleMutation';
+import AddStapleMutation from '../../mutations/AddStapleMutation';
+import AccountList from '../Accounts/AccountList';
+import AddAccountMutation from '../Accounts/mutations/AddAccountMutation';
 
 class StapleApp extends Component {
   state = {
     loggedIn: Reindex.isLoggedIn()
   };
 
-  handleInputSave = (name, amount) => {
+  handleInputSave = (name, amount, effectDate) => {
     Relay.Store.update(
       new AddStapleMutation({
         name,
         amount,
         user: this.props.viewer.user,
+        effectDate: effectDate
+      }),
+    );
+  };
+
+  handleAccountInputSave = (name) => {
+    Relay.Store.update(
+      new AddAccountMutation({
+        name,
+        user: this.props.viewer.user
       }),
     );
   };
@@ -41,12 +52,12 @@ class StapleApp extends Component {
     const plusAmount = stapleListPluses.reduce(reducer, 0);
     const minusAmount = stapleListMinuses.reduce(reducer, 0);
 
-    const net = plusAmount - minusAmount;
+    const net = plusAmount - Math.abs(minusAmount);
 
     return (
       <footer className="footer">
         <Row>
-          Net {net}.
+          <span>Net {net}.</span>
         </Row>
       </footer>
     );
@@ -60,6 +71,7 @@ class StapleApp extends Component {
                     filter={this.state.selectedFilter}
                     user={this.props.viewer.user}/>
         {this.makeFooter()}
+        <AccountList accounts={this.props.viewer.user.accounts} user={this.props.viewer.user} onSave={this.handleAccountInputSave}/>
       </section>
     );
   }
@@ -78,12 +90,25 @@ export default Relay.createContainer(StapleApp, {
                 id,
                 name,
                 type,
-                amount
+                amount,
+                effectDate
               }
             }
             ${StapleList.getFragment('staples')}
           },
+          accounts(first: 1000000) {
+            count,
+            edges {
+              node {
+                id,
+                name
+              }
+            }
+            ${AccountList.getFragment('accounts')}
+          }
+          ${AccountList.getFragment('user')}
           ${StapleList.getFragment('user')}
+          ${AddAccountMutation.getFragment('user')}
           ${AddStapleMutation.getFragment('user')}
         }
       }

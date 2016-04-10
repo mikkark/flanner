@@ -17,6 +17,12 @@
         "type": "Connection",
         "ofType": "Staple",
         "reverseName": "user"
+      },
+      {
+        "name": "accounts",
+        "type": "Connection",
+        "ofType": "Account",
+        "reverseName": "user"
       }
     ]
   },
@@ -46,9 +52,48 @@
         "type": "Float"
       },
       {
+        "name": "effectDate",
+        "type": "Float"
+      },
+      {
+        "name": "account",
+        "type": "Account",
+        "reverseName": "staples"
+      },
+      {
         "name": "user",
         "type": "User",
         "reverseName": "staples"
+      }
+    ]
+  },
+  {
+    "name": "Account",
+    "kind": "OBJECT",
+    "interfaces": [
+      "Node"
+    ],
+    "fields": [
+      {
+        "name": "id",
+        "type": "ID",
+        "nonNull": true,
+        "unique": true
+      },
+      {
+        "name": "name",
+        "type": "String"
+      },
+      {
+        "name": "staples",
+        "type": "Connection",
+        "ofType": "Staple",
+        "reverseName": "account"
+      },
+      {
+        "name": "user",
+        "type": "User",
+        "reverseName": "accounts"
       }
     ]
   }

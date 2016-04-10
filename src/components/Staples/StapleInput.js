@@ -25,6 +25,12 @@ export default class StapleInput extends Component {
     });
   };
 
+  handleEffectDateChange = (e) => {
+    this.setState({
+      effectDate: e.target.value,
+    });
+  };
+
   handleKeyDown = (e) => {
     if (e.keyCode === keycodes('esc')) {
       if (this.props.onCancel) {
@@ -38,6 +44,7 @@ export default class StapleInput extends Component {
   save() {
     const name = this.state.name.trim();
     const amount = this.state.amount.trim();
+    const effectDate = this.state.effectDate;
     if (name === '') {
       if (this.props.onDelete) {
         this.props.onDelete();
@@ -48,11 +55,12 @@ export default class StapleInput extends Component {
       }
     } else {
       if (this.props.onSave) {
-        this.props.onSave(name, amount);
+        this.props.onSave(name, amount, effectDate);
       }
       this.setState({
         name: '',
-        amount: ''
+        amount: '',
+        effectDate: ''
       });
     }
   }
@@ -64,17 +72,20 @@ export default class StapleInput extends Component {
   render() {
     return (
       <div>
-      <input className={this.props.className || ''}
-             placeholder={this.props.placeholder || ''}
-             value={this.state.name}
-             onChange={this.handleNameChange}
-             onKeyDown={this.handleKeyDown} />
-      <input className={this.props.className || ''}
-            placeholder={this.props.placeholder || ''}
-            value={this.state.amount}
-            onChange={this.handleAmountChange}
-            onKeyDown={this.handleKeyDown} />
-        </div>
+        <input className={this.props.className || ''}
+               placeholder={this.props.placeholder || ''}
+               value={this.state.name}
+               onChange={this.handleNameChange}/>
+        <input className={this.props.className || ''}
+               placeholder={this.props.placeholder || ''}
+               value={this.state.amount}
+               onChange={this.handleAmountChange} />
+        <input type="number"
+               value={this.state.effectDate}
+               onChange={this.handleEffectDateChange}
+               onKeyDown={this.handleKeyDown}
+          />
+      </div>
     );
   }
 }

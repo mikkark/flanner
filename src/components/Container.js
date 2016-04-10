@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import ProfileRoute from '../routes/ProfileRoute';
-import StaplesRoute from '../routes/StaplesRoute';
 import Profile from './Profile';
-import StapleApp from './StapleApp';
 import Relay from 'react-relay';
 import Spinner from 'elemental/lib/components/Spinner';
 import Reindex from '../Reindex';
@@ -13,6 +11,7 @@ export default class Container extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <div className="profile">
@@ -34,9 +33,10 @@ export default class Container extends React.Component {
           />
         </div>
         <div className="main">
+
           <Relay.RootContainer
-            Component={StapleApp}
-            route={new StaplesRoute}
+            Component={this.props.route.main}
+            route={this.props.route.relayRoute}
             forceFetch={true}
             renderLoading={
                 function () {
@@ -45,7 +45,7 @@ export default class Container extends React.Component {
               }
             renderFetched={(data) => {
               return (
-                <StapleApp {...data} />
+                <this.props.route.main {...data }/>
               );
               }
              }

@@ -1,38 +1,33 @@
 import Relay from 'react-relay';
 
-export default class AddStapleMutation extends Relay.Mutation {
+export default class AddAccountMutation extends Relay.Mutation {
   static fragments = {
     user: () => Relay.QL`fragment on User {
       id
-      staples {
+      accounts {
         count,
       }
     }`
   };
 
   getMutation() {
-    return Relay.QL`mutation{ createStaple }`;
+    return Relay.QL`mutation{ createAccount }`;
   }
 
   getVariables() {
-    console.log("vars:" + this.props);
-
     return {
       name: this.props.name,
-      amount: this.props.amount,
-      type: this.props.amount < 0 ? 'minus' : 'plus',
-      effectDate: this.props.effectDate,
       user: this.props.user.id
     };
   }
 
   getFatQuery() {
     return Relay.QL`
-      fragment on _StaplePayload {
-        changedStapleEdge,
+      fragment on _AccountPayload {
+        changedAccountEdge,
         user {
           id,
-          staples {
+          accounts {
             count
           }
         }
@@ -44,8 +39,8 @@ export default class AddStapleMutation extends Relay.Mutation {
     return [{
       type: 'RANGE_ADD',
       parentID: this.props.user.id,
-      connectionName: 'staples',
-      edgeName: 'changedStapleEdge',
+      connectionName: 'accounts',
+      edgeName: 'changedAccountEdge',
       rangeBehaviors: {
         '': 'prepend',
       },
@@ -58,21 +53,16 @@ export default class AddStapleMutation extends Relay.Mutation {
   }
 
   getOptimisticResponse() {
-    console.log(this.props);
-
     return {
-      changedStapleEdge: {
+      changedAccountEdge: {
         node: {
           name: this.props.name,
-          amount: this.props.amount,
-          type: this.props.amount < 0 ? 'minus' : 'plus',
-          effectDate: this.props.effectDate
         },
       },
       user: {
         id: this.props.user.id,
-        staples: {
-          count: this.props.user.staples.count + 1,
+        accounts: {
+          count: this.props.user.accounts.count + 1,
         },
       },
     };

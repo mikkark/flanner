@@ -1,34 +1,13 @@
 import React, {Component} from 'react';
-import Relay from 'react-relay';
 import {Router, Route} from 'react-router';
 import Reindex from '../Reindex';
 import Welcome from '../components/Welcome';
 import Login from './Login';
 import Container from './Container';
-
-// A wrapper to create a Relay container
-function createRelayContainer(Component, props) {
-  console.log(props);
-  if (Relay.isContainer(Component)) {
-    // Construct the RelayQueryConfig from the route and the router props.
-    var {name, queries} = props.route;
-    var {params} = props;
-    return (
-      <Relay.RootContainer
-        Component={Component}
-        renderFetched={(data) => <Component {...props} {...data} />}
-        route={{name, params, queries}}
-        renderLoading={
-          function () {
-            return <Spinner size="lg" />;
-          }
-        }
-      />
-    );
-  } else {
-    return <Component {...props}/>;
-  }
-}
+import StapleApp from './Staples/StapleApp';
+import StaplesRoute from '../routes/StaplesRoute';
+import CalendarRoute from '../routes/CalendarRoute';
+import CalendarApp from './Calendar/CalendarApp';
 
 export default class App extends Component {
   state = {isLoggedIn: Reindex.isLoggedIn()};
@@ -58,7 +37,7 @@ export default class App extends Component {
         <Router>
           <Route>
             <Route
-              name="home" // added a name to the route
+              name="home"
               path="/"
               component={Welcome}
             />
@@ -66,6 +45,15 @@ export default class App extends Component {
               name="StapleRoute"
               path="/staples"
               component={Container}
+              main={StapleApp}
+              relayRoute = {new StaplesRoute}
+            />
+            <Route
+              name="CalendarRoute"
+              path="/calendar"
+              component={Container}
+              main={CalendarApp}
+              relayRoute={new CalendarRoute}
             />
           </Route>
         </Router>

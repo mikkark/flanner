@@ -592,6 +592,60 @@
               },
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "getAccount",
+              "description": "Get an object of type `Account` by ID.",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "id of Account",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Account",
+                "ofType": null
+              },
+              "isDeprecated": true,
+              "deprecationReason": "Use `accountById`."
+            },
+            {
+              "name": "accountById",
+              "description": "Get an object of type `Account` by `id`",
+              "args": [
+                {
+                  "name": "id",
+                  "description": "`id` of `Account`",
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "ID",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Account",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "inputFields": null,
@@ -668,6 +722,11 @@
             {
               "kind": "OBJECT",
               "name": "User",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "Account",
               "ofType": null
             },
             {
@@ -850,6 +909,18 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "ReindexHookConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "introspection",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ReindexTypeIntrospection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -1263,7 +1334,7 @@
         {
           "kind": "SCALAR",
           "name": "Int",
-          "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^53 - 1) and 2^53 - 1 since represented in JSON as double-precision floating point numbers specifiedby [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point).",
+          "description": "The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. ",
           "fields": null,
           "inputFields": null,
           "interfaces": null,
@@ -1979,6 +2050,173 @@
         },
         {
           "kind": "OBJECT",
+          "name": "ReindexTypeIntrospection",
+          "description": "Generated names for derived types, queries and mutations of the type.",
+          "fields": [
+            {
+              "name": "connectionTypeName",
+              "description": "Name of connection type for the type.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "payloadTypeName",
+              "description": "Name of payload (mutation result) for the type.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "edgeTypeName",
+              "description": "Name of edge (element of connection) for the type.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "allQueryName",
+              "description": "Name of the query to get all nodes of the type.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "byIdQueryName",
+              "description": "Name of query to get node of the type by id",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "createMutationName",
+              "description": "Name of create mutation of the type.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "createMutationInputName",
+              "description": "Name of input type for the create mutation of the type.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updateMutationName",
+              "description": "Name of update mutation of the type.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updateMutationInputName",
+              "description": "Name of input type for the update mutation of the type.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "replaceMutationName",
+              "description": "Name of replace mutation of the type.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "replaceMutationInputName",
+              "description": "Name of input type for the replace mutation of the type.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "deleteMutationName",
+              "description": "Name of delete mutation of the type.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "deleteMutationInputName",
+              "description": "Name of input type for the delete mutation of the type.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
           "name": "ReindexSecret",
           "description": "Stores a secret used for signing authentication tokens for an app.\n\n* [Reindex docs: Authentication\n](https://www.reindex.io/docs/security/authentication/)\n",
           "fields": [
@@ -2234,6 +2472,30 @@
               "deprecationReason": null
             },
             {
+              "name": "effectDate",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "account",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Account",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
               "name": "user",
               "description": null,
               "args": [],
@@ -2264,6 +2526,226 @@
           "fields": null,
           "inputFields": null,
           "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "Account",
+          "description": null,
+          "fields": [
+            {
+              "name": "id",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "name",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "staples",
+              "description": null,
+              "args": [
+                {
+                  "name": "first",
+                  "description": "Number of edges to include from the beginning of the result.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "last",
+                  "description": "Number of edges to include from the end of the result.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "before",
+                  "description": "Only return edges before given cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "after",
+                  "description": "Only return edges after given cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "_StapleConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "user",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [
+            {
+              "kind": "INTERFACE",
+              "name": "Node",
+              "ofType": null
+            }
+          ],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "_StapleConnection",
+          "description": "This is a generated Connection for Staple.\n\nConnection is a pattern from Relay.\nIt's a specification, designed to make management of ordered collections easier,\nwhen pagination and ordering is required. Reindex uses Connections for linking\n`Node` types and for providing an interface to retrieving all objects of some\ntype.\n\n* [Reindex docs: Connection\n](https://reindex)\n* [Relay docs: Connections\n](https://facebook.github.io/relay/docs/graphql-connections.html#content)\n",
+          "fields": [
+            {
+              "name": "count",
+              "description": "The total number of elements in the connection.\n",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "nodes",
+              "description": "A plain list of Staple objects without the _StapleEdge wrapper object.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "Staple",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "edges",
+              "description": "A list of edges included in the connection.",
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "_StapleEdge",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "pageInfo",
+              "description": "Information about if there are any more elements before or after the current\nslice.\n",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "PageInfo",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "_StapleEdge",
+          "description": "This is a generated Edge for Staple.\n\nEdges are elements of `edges` list of Connections.\n\n* [Reindex docs: Connection\n](https://reindex)\n* [Relay docs: Connections\n](https://facebook.github.io/relay/docs/graphql-connections.html#content)\n",
+          "fields": [
+            {
+              "name": "cursor",
+              "description": "The opaque string-like object, that points to the current node. To be used with\n`before` and `after` arguments of the Connection field.\n",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Cursor",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "node",
+              "description": "The ${type.name} object wrapped by this edge.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Staple",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
           "enumValues": null,
           "possibleTypes": null
         },
@@ -2348,6 +2830,59 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "_StapleConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "accounts",
+              "description": null,
+              "args": [
+                {
+                  "name": "first",
+                  "description": "Number of edges to include from the beginning of the result.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "last",
+                  "description": "Number of edges to include from the end of the result.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "before",
+                  "description": "Only return edges before given cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "after",
+                  "description": "Only return edges after given cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "_AccountConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -2895,8 +3430,8 @@
         },
         {
           "kind": "OBJECT",
-          "name": "_StapleConnection",
-          "description": "This is a generated Connection for Staple.\n\nConnection is a pattern from Relay.\nIt's a specification, designed to make management of ordered collections easier,\nwhen pagination and ordering is required. Reindex uses Connections for linking\n`Node` types and for providing an interface to retrieving all objects of some\ntype.\n\n* [Reindex docs: Connection\n](https://reindex)\n* [Relay docs: Connections\n](https://facebook.github.io/relay/docs/graphql-connections.html#content)\n",
+          "name": "_AccountConnection",
+          "description": "This is a generated Connection for Account.\n\nConnection is a pattern from Relay.\nIt's a specification, designed to make management of ordered collections easier,\nwhen pagination and ordering is required. Reindex uses Connections for linking\n`Node` types and for providing an interface to retrieving all objects of some\ntype.\n\n* [Reindex docs: Connection\n](https://reindex)\n* [Relay docs: Connections\n](https://facebook.github.io/relay/docs/graphql-connections.html#content)\n",
           "fields": [
             {
               "name": "count",
@@ -2912,14 +3447,14 @@
             },
             {
               "name": "nodes",
-              "description": "A plain list of Staple objects without the _StapleEdge wrapper object.",
+              "description": "A plain list of Account objects without the _AccountEdge wrapper object.",
               "args": [],
               "type": {
                 "kind": "LIST",
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "Staple",
+                  "name": "Account",
                   "ofType": null
                 }
               },
@@ -2935,7 +3470,7 @@
                 "name": null,
                 "ofType": {
                   "kind": "OBJECT",
-                  "name": "_StapleEdge",
+                  "name": "_AccountEdge",
                   "ofType": null
                 }
               },
@@ -2966,8 +3501,8 @@
         },
         {
           "kind": "OBJECT",
-          "name": "_StapleEdge",
-          "description": "This is a generated Edge for Staple.\n\nEdges are elements of `edges` list of Connections.\n\n* [Reindex docs: Connection\n](https://reindex)\n* [Relay docs: Connections\n](https://facebook.github.io/relay/docs/graphql-connections.html#content)\n",
+          "name": "_AccountEdge",
+          "description": "This is a generated Edge for Account.\n\nEdges are elements of `edges` list of Connections.\n\n* [Reindex docs: Connection\n](https://reindex)\n* [Relay docs: Connections\n](https://facebook.github.io/relay/docs/graphql-connections.html#content)\n",
           "fields": [
             {
               "name": "cursor",
@@ -2991,7 +3526,7 @@
               "args": [],
               "type": {
                 "kind": "OBJECT",
-                "name": "Staple",
+                "name": "Account",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -3394,6 +3929,59 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "_UserConnection",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "allAccounts",
+              "description": "A connection with all objects of type `Account`",
+              "args": [
+                {
+                  "name": "first",
+                  "description": "Number of edges to include from the beginning of the result.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "last",
+                  "description": "Number of edges to include from the end of the result.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Int",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "before",
+                  "description": "Only return edges before given cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                },
+                {
+                  "name": "after",
+                  "description": "Only return edges after given cursor.",
+                  "type": {
+                    "kind": "SCALAR",
+                    "name": "Cursor",
+                    "ofType": null
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "_AccountConnection",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -4555,6 +5143,114 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "_UserPayload",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "createAccount",
+              "description": "Creates a new `Account` object",
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "_CreateAccountInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "_AccountPayload",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "updateAccount",
+              "description": "Updates the given `Account` object. The given fields are merged to the existing object.",
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "_UpdateAccountInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "_AccountPayload",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "replaceAccount",
+              "description": "Replaces the given `Account` object with a new one.",
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "_ReplaceAccountInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "_AccountPayload",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "deleteAccount",
+              "description": "Deletes the given `Account` object",
+              "args": [
+                {
+                  "name": "input",
+                  "description": null,
+                  "type": {
+                    "kind": "NON_NULL",
+                    "name": null,
+                    "ofType": {
+                      "kind": "INPUT_OBJECT",
+                      "name": "_DeleteAccountInput",
+                      "ofType": null
+                    }
+                  },
+                  "defaultValue": null
+                }
+              ],
+              "type": {
+                "kind": "OBJECT",
+                "name": "_AccountPayload",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -6375,6 +7071,26 @@
               "defaultValue": null
             },
             {
+              "name": "effectDate",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "account",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "user",
               "description": null,
               "type": {
@@ -6435,6 +7151,18 @@
               "type": {
                 "kind": "OBJECT",
                 "name": "ReindexViewer",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "account",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Account",
                 "ofType": null
               },
               "isDeprecated": false,
@@ -6519,6 +7247,26 @@
               "defaultValue": null
             },
             {
+              "name": "effectDate",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "account",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
               "name": "user",
               "description": null,
               "type": {
@@ -6589,6 +7337,26 @@
               "type": {
                 "kind": "SCALAR",
                 "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "effectDate",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "account",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "ID",
                 "ofType": null
               },
               "defaultValue": null
@@ -7238,6 +8006,275 @@
         {
           "kind": "INPUT_OBJECT",
           "name": "_DeleteUserInput",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "clientMutationId",
+              "description": "The client mutation ID used by clients like Relay to track the mutation. If given, returned in the response payload of the mutation.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "id",
+              "description": "The ID of the deleted object.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "_CreateAccountInput",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "name",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "user",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "clientMutationId",
+              "description": "The client mutation ID used by clients like Relay to track the mutation. If given, returned in the response payload of the mutation.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "_AccountPayload",
+          "description": "The payload returned from mutations of `Account`.\n\n* [Reindex docs: Mutations\n](https://www.reindex.io/docs/graphql-api/mutations/)\n",
+          "fields": [
+            {
+              "name": "clientMutationId",
+              "description": "The client mutation ID used by clients like Relay to track the mutation. If given, returned in the response payload of the mutation.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "id",
+              "description": "The ID of the mutated object.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "viewer",
+              "description": "The global viewer object. Can be used in the client to add\na newly created object to the connection of all objects of\nthe type.\n\nE.g. when creating a Account object, you can add it\nto `viewer.allAccounts` using the following Relay\nmutation config:\n```javascript\n{\n  type: 'RANGE_ADD',\n  parentID: this.props.viewer.id,\n  connectionName: 'allAccounts',\n  edgeName: 'changedAccountEdge',\n  rangeBehaviors: {\n    '': 'prepend',\n  },\n}\n```\n",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "ReindexViewer",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "user",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "User",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "changedAccount",
+              "description": "The mutated object.",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "Account",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "changedAccountEdge",
+              "description": "A connection edge containing the mutated object. Can be used to add a newly\ncreated object to a connection in Relay.\n",
+              "args": [],
+              "type": {
+                "kind": "OBJECT",
+                "name": "_AccountEdge",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "_UpdateAccountInput",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "name",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "user",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "clientMutationId",
+              "description": "The client mutation ID used by clients like Relay to track the mutation. If given, returned in the response payload of the mutation.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "id",
+              "description": "The ID of the updated object.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "_ReplaceAccountInput",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "name",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "user",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "clientMutationId",
+              "description": "The client mutation ID used by clients like Relay to track the mutation. If given, returned in the response payload of the mutation.",
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "id",
+              "description": "The ID of the replaced object.",
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "ID",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "_DeleteAccountInput",
           "description": null,
           "fields": null,
           "inputFields": [
